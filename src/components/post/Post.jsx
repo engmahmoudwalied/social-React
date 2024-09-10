@@ -8,11 +8,12 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Comments from "../comments/Comments";
 import "./post.scss";
 
-const Post = ({ post }) => {
+const Post = ({ post, onDelete }) => {
   const [commentOpen, setCommentOpen] = useState(false);
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(post.likes || 0);
   const [comments, setComments] = useState(post.comments || []);
+  const [menuOpen, setMenuOpen] = useState(false); // State for the dropdown menu
 
   const handleLike = () => {
     setLiked(!liked);
@@ -29,7 +30,7 @@ const Post = ({ post }) => {
         .share({
           title: post.name,
           text: post.desc,
-          url: window.location.href, // يمكنك استخدام رابط البوست أو الرابط الحالي للصفحة
+          url: window.location.href,
         })
         .then(() => {
           console.log("Shared successfully");
@@ -42,8 +43,12 @@ const Post = ({ post }) => {
     }
   };
 
+  const handleDelete = () => {
+    onDelete(post.id); // Call the delete function passed as a prop
+  };
+
   return (
-    <div className="shadow-xl rounded-lg p-5">
+    <div className="shadow-xl rounded-lg p-5 relative">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-5">
           <img
@@ -61,7 +66,24 @@ const Post = ({ post }) => {
             <span className="text-sm">1 min ago</span>
           </div>
         </div>
-        <MoreHorizIcon />
+        <div className="relative">
+          <MoreHorizIcon
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="cursor-pointer"
+          />
+          {menuOpen && (
+            <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-700 shadow-lg rounded-lg z-10">
+              <ul className="py-2">
+                <li
+                  className="px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
+                  onClick={handleDelete}
+                >
+                  Delete Post
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
       <div className="mb-5">
         <p>{post.desc}</p>
@@ -71,7 +93,7 @@ const Post = ({ post }) => {
           className="w-full max-h-96 object-cover mt-5"
         />
       </div>
-      <div className="flex items-center border-y-2 border-[#18181b]	 p-3 space-x-60 gap-5">
+      <div className="flex items-center border-y-2 border-[#18181b] p-3 max-sm:gap-10 lg:gap-28">
         <div
           className="flex items-center gap-2 cursor-pointer text-sm"
           onClick={handleLike}

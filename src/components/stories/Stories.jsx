@@ -44,8 +44,6 @@ const Stories = () => {
     { id: 1, name: "John Doe", img: "https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" },
     { id: 2, name: "Jane Smith", img: "https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" },
     { id: 3, name: "Alice Johnson", img: "https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" },
-    { id: 4, name: "Bob Williams", img: "https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" },
-    { id: 5, name: "Sarah Brown", img: "https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" },
   ]);
 
   const [newStory, setNewStory] = useState({ name: "", img: "" });
@@ -102,8 +100,8 @@ const Stories = () => {
 
       {/* عرض الـ popup إذا تم اختيار استوري */}
       {selectedStory && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg relative w-full max-w-2xl mx-auto animate-scaleUp">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex z-10 mt-12 justify-center items-center">
+          <div className="bg-white p-1 rounded-lg shadow-xl relative w-full max-w-xl mx-auto animate-scaleUp">
             <span
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-2xl cursor-pointer"
               onClick={closePopup}

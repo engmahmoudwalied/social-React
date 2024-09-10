@@ -16,7 +16,7 @@ const Navbar = () => {
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <div className={`flex items-center justify-between p-4 md:p-5 h-14 border-b sticky top-0 z-50 ${darkMode ? 'bg-[#18181b] text-white border-gray-700' : 'bg-white text-gray-900 border-gray-300'}`}>
+    <div className={`flex items-center justify-between p-4 md:p-5 h-14 max-sm:w-[122.6%] sticky top-0 z-50 ${darkMode ? 'bg-[#18181b] text-white border-gray-700' : 'bg-white text-gray-900 border-gray-300'}`}>
       <div className="flex items-center gap-4 md:gap-8">
         <Link to="/" className="text-xl font-bold">
           lamasocial
@@ -52,6 +52,7 @@ const Navbar = () => {
         </Link>
       </div>
     </div>
+    
   );
 };
 
